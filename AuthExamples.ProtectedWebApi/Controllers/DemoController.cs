@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Http;
 
@@ -13,7 +14,9 @@ namespace AuthExamples.ProtectedWebApi.Controllers
         [HttpGet, Route("test")]
         public IHttpActionResult Test()
         {
-            return Ok("Hello World!");
+            var claims = (User as ClaimsPrincipal).Claims;
+            var result = claims.Select(x => new { x.Type, x.Value });
+            return Ok(result);
         }
     }
 }
