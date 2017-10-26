@@ -6,6 +6,7 @@ using System.Web.Http;
 
 namespace AuthExamples.ProtectedWebApi.Controllers
 {
+    [Authorize]
     [RoutePrefix("demo")]
     public class DemoController : ApiController
     {
