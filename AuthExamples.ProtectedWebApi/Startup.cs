@@ -5,6 +5,7 @@ using Owin;
 using System.Web.Http;
 using IdentityServer3.AccessTokenValidation;
 using System.IdentityModel.Tokens;
+using Microsoft.Owin.Cors;
 
 [assembly: OwinStartup(typeof(AuthExamples.ProtectedWebApi.Startup))]
 
@@ -14,6 +15,7 @@ namespace AuthExamples.ProtectedWebApi
     {
         public void Configuration(IAppBuilder app)
         {
+            app.UseCors(CorsOptions.AllowAll); // Enable CORS support
             var idsrvAuthOptions = new IdentityServerBearerTokenAuthenticationOptions
             {
                 Authority = "https://login-dev.sdasystems.org/", // points to development environment
